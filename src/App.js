@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useMemo } from "react";
 
 function App() {
+  const [myNum, setMyNum] = useState(0);
+  const [show, setShow] = useState(false);
+
+  const getValue = () => {
+    setMyNum(myNum + 1);
+  };
+
+  const countNumber = (num) => {
+    console.log("num ");
+    for (let i = 0; i < 100000; i++) { }
+    return num;
+  };
+
+  const checkData = useMemo(() => {
+    return countNumber(myNum);
+  }, [myNum]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="">
+        <button onClick={getValue} style={{ backgroundColor: "red" }}>Counter</button>
+        <p>My New Number is: {checkData}</p> {/* Use checkData here */}
+        <button onClick={() => setShow(!show)}>
+          {show ? "you clicked me" : "click me plz"}
+        </button>
+      </div>
+    </>
   );
 }
 
